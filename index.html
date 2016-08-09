@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link data-require="bootstrap@4.0.0-alpha.2" data-semver="4.0.0-alpha.2" rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css" />
+    <script data-require="angularjs@1.5.7" data-semver="1.5.7" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body ng-app="sarsatSaves">
+    <h1>SARSAT Saves Data</h1>
+    <form name="newSaveForm" class="container row" ng-controller="newSaveController as newSave">
+      <div class="col-xs-12 col-sm-6 ">
+        <h2>Input</h2>
+        <div class="textarea" style="white-space: pre-wrap" contenteditable="true" ng-paste="newSave.interceptPaste($event)" ng-model="newSave.saveData.source" ng-change="newSave.updateSave()" ng-show="newSave.saveData.source">
+        </div>
+      </div>
+     
+      <div class="col-xs-12 col-sm-6">
+        <h2>Results</h2>
+        <p>Latitude: {{newSave.saveData.lat}}</p>
+        <p>Longitude: {{newSave.saveData.lon}}</p>
+        <p>Date: {{newSave.saveData.date | date:"MM/dd/yyyy"}}</p>
+        <p>Beacon Type: {{newSave.saveData.beacon.type}}</p>
+        <p>Beacon Description: {{newSave.saveData.beacon.description}}</p>
+        <p>Incident Type: {{newSave.saveData.incidentType}}</p>
+        <p>Saves: {{newSave.saveData.savesCount}}</p>
+        <p>Homeport: {{newSave.saveData.homeport}}</p>
+        <p>Description: {{newSave.saveData.incidentDescription}}</p>
+      </div>
+    </form>
+    <script src="app.js"></script>
+  </body>
+
+</html>

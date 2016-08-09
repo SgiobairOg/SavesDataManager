@@ -1,0 +1,7 @@
+/* Styles go here */
+
+.textarea {
+  white-space: pre-wrap;
+  background: #cccccc;
+  padding: 10px;
+}
