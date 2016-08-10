@@ -205,7 +205,7 @@
         matches = [];
       
       //Set regex
-      const regexStr = /(On [\s\S]*)(?:[0-9]{1,4} SARSAT RESCUE)/i;
+      const regexStr = /(On [\s\S]*)(?=(\b[0-9]{1,4}) SARSAT RESCUE)/igm;
       
       //Get Matches
       matches = sco.regexGet( source, regexStr );
@@ -217,7 +217,7 @@
       }
     }
     
-    // Pull Description from Source Text
+    // Pull Homeport from Source Text
     sco.pullHomeport = function ( source ) {
       //Verify input
       source = source || sco.saveData.source;
@@ -227,7 +227,7 @@
         matches = [];
       
       //Set regex
-      const regexStr = /Home Port - ([A-z\s,]*)\n/gi;
+      const regexStr = /(?:Home Port [-|–]|Homeport [-|–])(?:\s|&nbsp;)([A-z,\s]+)$/igm;
       
       //Get Matches
       matches = sco.regexGet( source, regexStr );
@@ -245,9 +245,9 @@
         src = source,
         re = regex,
         matches;
-      //console.log("REGEX");
-      //console.log(src);
-      //console.log(re);
+      console.log("REGEX");
+      console.log(src);
+      console.log(re);
       
       matches = re.exec( src );
       
@@ -279,6 +279,7 @@
       // Get pasted data via clipboard API
       clipboardData = e.clipboardData || window.clipboardData;
       pastedData = clipboardData.getData('Text');
+      console.log(pastedData);
       
       sco.saveData.source = pastedData;
       sco.updateSave();
